@@ -13,6 +13,34 @@ export default function TextForm(props) {
         setText(newText)
     }
 
+    const handleTitleClick = ()=>{
+        function toTitleCase(str) {
+            return str.split(' ').map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }).join(' ');
+        }
+    
+    let newText = toTitleCase(text);
+    setText(newText)
+    //console.log(newText);  // Output: "This Is A Sample Text"
+}
+
+    const handleRemoveSpaceClick = ()=>{
+        // console.log("Uppercase was clicked:  " + text);
+        let newText = text.replace(/\s+/g, '');
+        setText(newText)
+    }
+
+    const handleSingleSpaceClick = ()=>{
+    let newText = text.replace(/\s+/g, ' ');
+    setText(newText)
+    }
+
+    const handleClearClick = ()=>{
+        let newText = '';
+        setText(newText)
+    }
+
     const handleOnChange = (event)=>{
         // console.log("On Change");
         setText(event.target.value);
@@ -30,6 +58,10 @@ export default function TextForm(props) {
 </div>
 <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
 <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
+<button className="btn btn-primary mx-1" onClick={handleTitleClick}>Convert to Titlecase</button>
+<button className="btn btn-primary mx-1" onClick={handleRemoveSpaceClick}>Remove Space</button>
+<button className="btn btn-primary mx-1" onClick={handleSingleSpaceClick}>Remove Extra Space</button>
+<button className="btn btn-primary mx-1" onClick={handleClearClick}>Clear Text</button>
     </div>
     <div className="container my-2">
         <h2>Your text summary</h2>
